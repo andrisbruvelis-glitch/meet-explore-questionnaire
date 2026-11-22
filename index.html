@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Meet &amp; Explore – 2-minute questionnaire</title>
+<meta name="description" content="Businesses have incubators to help them grow. What if people had one too? 10 quick questions, under 2 minutes.">
+<meta property="og:title" content="What if people had an incubator too?">
+<meta property="og:description" content="Meet & Explore – 10 quick questions, under 2 minutes. No login.">
+<meta name="theme-color" content="#F5B800">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%23F5B800'/><text x='50' y='66' font-size='46' text-anchor='middle' font-family='Arial' font-weight='700' fill='%23070707'>M&amp;E</text></svg>">
+<style>
+:root{--y:#F5B800;--y2:#FFE38A;--cream:#FFF9E8;--ink:#1d1a14;--mut:#6b6455;--line:#eadfbe;--r:18px}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;height:100%}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;background:var(--cream);color:var(--ink);font-size:17px;line-height:1.4}
+.app{max-width:520px;margin:0 auto;min-height:100%;display:flex;flex-direction:column;padding:max(14px,env(safe-area-inset-top)) 20px max(20px,env(safe-area-inset-bottom))}
+header{display:flex;align-items:center;justify-content:space-between;gap:10px;height:44px}
+.brand{display:flex;align-items:center;gap:8px;font-weight:800;letter-spacing:-.2px}
+.dot{width:30px;height:30px;border-radius:50%;background:var(--y);display:grid;place-items:center;font-size:12px;font-weight:900}
+.lang{display:flex;background:#fff;border:1.5px solid var(--line);border-radius:999px;padding:3px}
+.lang button{border:0;background:transparent;font:inherit;font-size:14px;font-weight:700;padding:6px 12px;border-radius:999px;color:var(--mut);cursor:pointer}
+.lang button.on{background:var(--ink);color:#fff}
+.bar{height:8px;background:#f0e6c8;border-radius:99px;margin:12px 0 4px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--y);border-radius:99px;transition:width .35s ease}
+.nav{display:flex;justify-content:space-between;align-items:center;height:36px;color:var(--mut);font-size:14px}
+.back{border:0;background:none;font:inherit;font-size:15px;color:var(--ink);font-weight:600;padding:6px 0;cursor:pointer}
+.back[hidden]{visibility:hidden;display:block}
+main{flex:1;display:flex;flex-direction:column}
+.screen{animation:in .28s ease both;display:flex;flex-direction:column;flex:1}
+@keyframes in{from{opacity:0;transform:translateX(14px)}to{opacity:1;transform:none}}
+h1{font-size:30px;line-height:1.15;margin:18px 0 12px;letter-spacing:-.5px}
+h2{font-size:24px;line-height:1.22;margin:14px 0 6px;letter-spacing:-.3px}
+.hint{color:var(--mut);margin:0 0 16px;font-size:15px}
+.hero{background:var(--y);border-radius:24px;padding:24px 22px;margin-top:10px;position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;right:-40px;bottom:-40px;width:150px;height:150px;border-radius:50%;background:rgba(255,255,255,.28)}
+.hero p{margin:0 0 10px;font-size:18px}
+.hero .big{font-size:27px;font-weight:800;line-height:1.15;margin:0 0 12px;letter-spacing:-.4px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0}
+.chip{background:#fff;border:1.5px solid var(--line);border-radius:99px;padding:6px 12px;font-size:14px}
+.meta{color:var(--mut);font-size:14px;margin:6px 0 18px}
+.opts{display:flex;flex-direction:column;gap:10px}
+.opt{display:flex;align-items:center;gap:12px;width:100%;min-height:58px;border:2px solid var(--line);background:#fff;border-radius:var(--r);padding:12px 16px;font:inherit;font-size:18px;font-weight:600;color:var(--ink);text-align:left;cursor:pointer;transition:transform .08s,border-color .15s,background .15s}
+.opt:active{transform:scale(.98)}
+.opt .ic{font-size:22px;width:28px;text-align:center}
+.opt.sel{border-color:var(--ink);background:var(--y2)}
+.opt .ck{color:transparent;margin-left:auto;width:24px;height:24px;border-radius:7px;border:2px solid var(--line);display:grid;place-items:center;font-size:15px}
+.opt.sel .ck{background:var(--ink);border-color:var(--ink);color:#fff}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.grid2 .opt{justify-content:center;text-align:center}
+input[type=text],input[type=email],textarea{width:100%;font:inherit;font-size:18px;padding:15px 16px;border:2px solid var(--line);border-radius:var(--r);background:#fff;color:var(--ink);outline:none}
+input:focus,textarea:focus{border-color:var(--y)}
+textarea{min-height:96px;resize:vertical}
+label.small{display:block;font-weight:700;font-size:15px;margin:16px 0 8px}
+.cta{margin-top:auto;padding-top:18px}
+.btn{width:100%;min-height:58px;border:0;border-radius:var(--r);background:var(--ink);color:#fff;font:inherit;font-size:18px;font-weight:800;cursor:pointer}
+.btn.y{background:var(--y);color:var(--ink)}
+.btn:disabled{opacity:.35}
+.link{display:block;width:100%;text-align:center;background:none;border:0;font:inherit;color:var(--mut);padding:14px;font-size:15px;text-decoration:underline;cursor:pointer}
+.consent{display:flex;gap:12px;align-items:flex-start;margin-top:14px;font-size:14px;color:var(--mut);cursor:pointer}
+.consent input{width:24px;height:24px;flex:none;accent-color:#1d1a14;margin:0}
+.thanks{text-align:center;justify-content:center}
+.thanks .big{font-size:64px;margin-bottom:4px}
+.err{color:#b3261e;font-size:14px;margin-top:10px;min-height:1em}
+.foot{color:var(--mut);font-size:12px;text-align:center;margin-top:14px}
+.share{display:flex;gap:10px;margin-top:22px}
+.share .btn{font-size:16px}
+</style>
+</head>
+<body>
+<div class="app">
+  <header>
+    <div class="brand"><span class="dot">M&amp;E</span><span>Meet &amp; Explore</span></div>
+    <div class="lang" role="group" aria-label="Language"><button data-l="fr">FR</button><button data-l="en">EN</button></div>
+  </header>
+  <div id="prog" hidden><div class="bar"><i id="barI"></i></div>
+  <div class="nav"><button class="back" id="back">← <span data-t="back"></span></button><span id="count"></span></div></div>
+  <main id="main"></main>
+</div>
+<script>
+const TOPIC="mx-survey-6178f97422e26022e1617f4d", PUBKEY="MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAoOw3YKxEIqbBOQLqSnpJX7lGcPOm7I0wQASs/ef6uK1cI6h5+F9QdQzxnhPVGV4qAJniKEwU8x8vDdCm9I9KdR943V8INmfc06IyAeRxgX+881ih2Xmie9jzl17dQvtQpOjx73WnxLtmBRH9j5YhyKP97ETyiADG8iuRaCZIJmsOr3xRT9XaC08A9qSzrY5FlCp0l3rI8pTI9QeLTZqdMC0nRdhLP3BP/exGKaAoWNlC1CkngL/7pCHokGpIIb8a30WcCghOhvCpR/3U9kieiyDQuCjfuAGSjaVgbl/I3c4QQvyavlB5Hr/D1WTO6yDZ5u9MxjNUalkis5ioGBEmvwIDAQAB";
+const T={
+en:{back:"Back",of:"of",next:"Next",start:"Start – 2 min",send:"Send my answers",skip:"Skip & send",
+ story1:"Businesses have incubators to help them grow.",story2:"What if people had one too?",
+ story3:"Meet & Explore is a place to grow friendships, confidence and new skills – together, in real life. It started in Pau, France, and is going international.",
+ meta:"10 quick questions · under 2 minutes · no login · anonymous",
+ chips:["☕ Coworking days","🥾 Hikes","🎨 Workshops","🥂 Apéros","🗣️ Language exchange"],
+ q1:"Which city do you live in?",q1h:"And how long have you been there?",cityPh:"Your city (e.g. Pau, Lyon, London…)",
+ o1:["Less than 1 year","1–3 years","3+ years","I was born here"],
+ q2:"Your age range?",
+ q3:"In the last year, how often did you feel lonely?",o3:["Never","Rarely","Sometimes","Often","Very often"],
+ q4:"What stops you meeting new people?",multi:"Tap all that apply",o4:["Time","Shyness","Safety","I don't know where to go","Other"],otherPh:"Tell us more (optional)",
+ q5:"Which would you try first?",o5:["Coworking day","Hike","Language exchange","Workshop","Apéro","Sport"],
+ q6:"What do you want to grow?",o6:["Confidence","Career","Health","Creativity","Social skills"],
+ q7:"Does “a personal growth incubator” make sense to you?",o7:["Yes","Sort of","No"],whyL:"Why? (optional)",whyPh:"A few words are perfect",
+ q8:"Your ideal group size?",o8:["2–5 people","6–12 people","12+ people"],
+ q9:"Would you pay for some events?",o9:["No","Up to €5","€5–15","More"],
+ q10:"Want early access to Meet & Explore?",q10h:"Optional. Leave your email and we'll tell you when it opens near you.",emailPh:"you@email.com",
+ consent:"Yes, Meet & Explore can email me about early access. I can unsubscribe any time, and my email is never shared or sold.",
+ needConsent:"Please tick the box to leave your email, or tap “Skip & send”.",badEmail:"That email doesn't look right.",
+ sending:"Sending…",failed:"Couldn't send – check your connection and try again.",
+ thx:"Thank you! 💛",thx2:"Your answers help us build a place where people grow together. Know someone who just moved to a new city?",
+ shareBtn:"Share this questionnaire",copied:"Link copied!",again:"",foot:"Your answers are anonymous unless you add your email."},
+fr:{back:"Retour",of:"sur",next:"Suivant",start:"Commencer – 2 min",send:"Envoyer mes réponses",skip:"Passer et envoyer",
+ story1:"Les entreprises ont des incubateurs pour grandir.",story2:"Et si les gens en avaient un, eux aussi ?",
+ story3:"Meet & Explore, c'est un lieu pour créer des amitiés, prendre confiance et apprendre – ensemble, en vrai. C'est né à Pau, et ça s'ouvre au monde.",
+ meta:"10 questions rapides · moins de 2 minutes · sans compte · anonyme",
+ chips:["☕ Journées coworking","🥾 Randos","🎨 Ateliers","🥂 Apéros","🗣️ Échanges de langues"],
+ q1:"Dans quelle ville vis-tu ?",q1h:"Et depuis combien de temps ?",cityPh:"Ta ville (ex. Pau, Lyon, Bordeaux…)",
+ o1:["Moins d'un an","1 à 3 ans","Plus de 3 ans","J'y suis né·e"],
+ q2:"Ta tranche d'âge ?",
+ q3:"Cette année, tu t'es senti·e seul·e… ?",o3:["Jamais","Rarement","Parfois","Souvent","Très souvent"],
+ q4:"Qu'est-ce qui t'empêche de rencontrer du monde ?",multi:"Coche tout ce qui s'applique",o4:["Le temps","La timidité","La sécurité","Je ne sais pas où aller","Autre"],otherPh:"Dis-nous en plus (facultatif)",
+ q5:"Tu essaierais quoi en premier ?",o5:["Journée coworking","Randonnée","Échange de langues","Atelier","Apéro","Sport"],
+ q6:"Qu'est-ce que tu veux faire grandir ?",o6:["Confiance en soi","Carrière","Santé","Créativité","Aisance sociale"],
+ q7:"« Un incubateur de développement personnel », ça te parle ?",o7:["Oui","Un peu","Non"],whyL:"Pourquoi ? (facultatif)",whyPh:"Quelques mots suffisent",
+ q8:"La taille de groupe idéale ?",o8:["2 à 5 personnes","6 à 12 personnes","Plus de 12"],
+ q9:"Tu paierais pour certains événements ?",o9:["Non","Jusqu'à 5 €","5 à 15 €","Plus"],
+ q10:"Tu veux un accès en avant-première ?",q10h:"Facultatif. Laisse ton e-mail et on te prévient quand ça ouvre près de chez toi.",emailPh:"toi@email.com",
+ consent:"Oui, Meet & Explore peut m'écrire au sujet de l'avant-première. Je peux me désinscrire à tout moment ; mon e-mail n'est jamais partagé ni vendu.",
+ needConsent:"Coche la case pour laisser ton e-mail, ou touche « Passer et envoyer ».",badEmail:"Cet e-mail ne semble pas valide.",
+ sending:"Envoi…",failed:"Échec de l'envoi – vérifie ta connexion et réessaie.",
+ thx:"Merci ! 💛",thx2:"Tes réponses nous aident à construire un lieu où l'on grandit ensemble. Tu connais quelqu'un qui vient d'arriver dans une nouvelle ville ?",
+ shareBtn:"Partager le questionnaire",copied:"Lien copié !",foot:"Tes réponses sont anonymes, sauf si tu ajoutes ton e-mail."}};
+// value keys stay in English so the results table is the same whatever the language
+const V={q1:["<1 yr","1-3 yrs","3+ yrs","Born here"],q2:["18–24","25–34","35–44","45–55","55+"],q3:["Never","Rarely","Sometimes","Often","Very often"],
+ q4:["Time","Shyness","Safety","Don't know where","Other"],q5:["Coworking day","Hike","Language exchange","Workshop","Apéro","Sport"],
+ q6:["Confidence","Career","Health","Creativity","Social skills"],q7:["Yes","Sort of","No"],q8:["2-5","6-12","12+"],q9:["No","Up to €5","€5-15","More"]};
+const IC={q5:["💻","🥾","🗣️","🎨","🥂","🏃‍♀️"],q6:["✨","💼","🌿","🎨","🤝"]};
+const qs=new URLSearchParams(location.search);
+let lang=localStorage.getItem("mx_lang")||((navigator.language||"").toLowerCase().startsWith("fr")?"fr":"en");
+if(qs.get("lang")==="fr"||qs.get("lang")==="en")lang=qs.get("lang");
+const A={q4:[],q6:[]};const N=10;let step=0;
+const $=s=>document.querySelector(s);const t=k=>T[lang][k];
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+function setLang(l){lang=l;localStorage.setItem("mx_lang",l);document.documentElement.lang=l;
+ document.querySelectorAll(".lang button").forEach(b=>b.classList.toggle("on",b.dataset.l===l));render(false)}
+document.querySelectorAll(".lang button").forEach(b=>b.onclick=()=>setLang(b.dataset.l));
+$("#back").onclick=()=>{if(step>0){step--;render()}};
+function go(n){step=n;render();window.scrollTo(0,0)}
+function single(key,opts,extra=""){const ic=IC[key]||[];return `<div class="opts ${extra}">`+opts.map((o,i)=>
+ `<button class="opt ${A[key]===V[key][i]?"sel":""}" data-k="${key}" data-i="${i}">${ic[i]?`<span class="ic">${ic[i]}</span>`:""}<span>${esc(o)}</span></button>`).join("")+"</div>"}
+function multi(key,opts){const ic=IC[key]||[];return `<div class="opts">`+opts.map((o,i)=>
+ `<button class="opt ${A[key].includes(V[key][i])?"sel":""}" data-m="${key}" data-i="${i}">${ic[i]?`<span class="ic">${ic[i]}</span>`:""}<span>${esc(o)}</span><span class="ck">✓</span></button>`).join("")+"</div>"}
+function render(anim=true){
+ document.documentElement.lang=lang;document.querySelectorAll(".lang button").forEach(b=>b.classList.toggle("on",b.dataset.l===lang));
+ document.querySelectorAll("[data-t]").forEach(e=>e.textContent=t(e.dataset.t));
+ const m=$("#main");const inQ=step>=1&&step<=N;$("#prog").hidden=!inQ;
+ if(inQ){$("#barI").style.width=((step-1)/N*100+4)+"%";$("#count").textContent=`${step} ${t("of")} ${N}`;}
+ let h="";
+ if(step===0){h=`<div class="hero"><p>${esc(t("story1"))}</p><div class="big">${esc(t("story2"))}</div><p style="font-size:16px;margin:0">${esc(t("story3"))}</p></div>
+  <div class="chips">${t("chips").map(c=>`<span class="chip">${esc(c)}</span>`).join("")}</div>
+  <div class="meta">${esc(t("meta"))}</div><div class="cta"><button class="btn" id="go">${esc(t("start"))}</button><div class="foot">${esc(t("foot"))}</div></div>`}
+ else if(step===1){h=`<h2>${esc(t("q1"))}</h2><input type="text" id="city" autocomplete="address-level2" placeholder="${esc(t("cityPh"))}" value="${esc(A.city||"")}">
+  <label class="small">${esc(t("q1h"))}</label>${single("q1",t("o1"),"grid2")}`}
+ else if(step===2)h=`<h2>${esc(t("q2"))}</h2><div class="hint">&nbsp;</div>${single("q2",V.q2)}`;
+ else if(step===3)h=`<h2>${esc(t("q3"))}</h2><div class="hint">&nbsp;</div>${single("q3",t("o3"))}`;
+ else if(step===4)h=`<h2>${esc(t("q4"))}</h2><p class="hint">${esc(t("multi"))}</p>${multi("q4",t("o4"))}
+  <div id="otherBox" ${A.q4.includes("Other")?"":"hidden"}><input type="text" id="other" style="margin-top:10px" placeholder="${esc(t("otherPh"))}" value="${esc(A.q4_other||"")}"></div>
+  <div class="cta"><button class="btn" id="nx" ${A.q4.length?"":"disabled"}>${esc(t("next"))}</button></div>`;
+ else if(step===5)h=`<h2>${esc(t("q5"))}</h2><div class="hint">&nbsp;</div>${single("q5",t("o5"))}`;
+ else if(step===6)h=`<h2>${esc(t("q6"))}</h2><p class="hint">${esc(t("multi"))}</p>${multi("q6",t("o6"))}
+  <div class="cta"><button class="btn" id="nx" ${A.q6.length?"":"disabled"}>${esc(t("next"))}</button></div>`;
+ else if(step===7)h=`<h2>${esc(t("q7"))}</h2><div class="hint">&nbsp;</div>${single("q7",t("o7"),"grid3")}
+  <div id="whyBox" ${A.q7?"":"hidden"}><label class="small">${esc(t("whyL"))}</label><textarea id="why" maxlength="500" placeholder="${esc(t("whyPh"))}">${esc(A.q7_why||"")}</textarea>
+  <div class="cta"><button class="btn" id="nx">${esc(t("next"))}</button></div></div>`;
+ else if(step===8)h=`<h2>${esc(t("q8"))}</h2><div class="hint">&nbsp;</div>${single("q8",t("o8"))}`;
+ else if(step===9)h=`<h2>${esc(t("q9"))}</h2><div class="hint">&nbsp;</div>${single("q9",t("o9"),"grid2")}`;
+ else if(step===10)h=`<h2>${esc(t("q10"))}</h2><p class="hint">${esc(t("q10h"))}</p>
+  <input type="email" id="email" inputmode="email" autocomplete="email" placeholder="${esc(t("emailPh"))}" value="${esc(A.email||"")}">
+  <label class="consent"><input type="checkbox" id="cons" ${A.consent?"checked":""}><span>${esc(t("consent"))}</span></label>
+  <div class="err" id="err"></div>
+  <div class="cta"><button class="btn y" id="send">${esc(t("send"))}</button><button class="link" id="skip">${esc(t("skip"))}</button></div>`;
+ else h=`<div class="thanks screen"><div class="big">🌼</div><h1>${esc(t("thx"))}</h1><p class="hint" style="font-size:17px">${esc(t("thx2"))}</p>
+  <div class="share"><button class="btn y" id="share">${esc(t("shareBtn"))}</button></div><div class="foot" id="cp"></div></div>`;
+ m.innerHTML=`<div class="screen" style="${anim?"":"animation:none"}">${h}</div>`;
+ bind();
+}
+function bind(){
+ const g=$("#go");if(g)g.onclick=()=>go(1);
+ const city=$("#city");if(city)city.oninput=()=>A.city=city.value.trim();
+ document.querySelectorAll("[data-k]").forEach(b=>b.onclick=()=>{const k=b.dataset.k;A[k]=V[k][+b.dataset.i];
+  document.querySelectorAll(`[data-k="${k}"]`).forEach(x=>x.classList.toggle("sel",x===b));
+  if(k==="q7"){$("#whyBox").hidden=false;return}
+  setTimeout(()=>go(step+1),220)});
+ document.querySelectorAll("[data-m]").forEach(b=>b.onclick=()=>{const k=b.dataset.m,v=V[k][+b.dataset.i];const a=A[k];
+  const j=a.indexOf(v);j<0?a.push(v):a.splice(j,1);b.classList.toggle("sel",j<0);$("#nx").disabled=!a.length;
+  if(k==="q4"){$("#otherBox").hidden=!a.includes("Other")}});
+ const o=$("#other");if(o)o.oninput=()=>A.q4_other=o.value.trim();
+ const w=$("#why");if(w)w.oninput=()=>A.q7_why=w.value.trim();
+ const nx=$("#nx");if(nx)nx.onclick=()=>go(step+1);
+ const s=$("#send");if(s)s.onclick=()=>finish(true);
+ const sk=$("#skip");if(sk)sk.onclick=()=>finish(false);
+ const sh=$("#share");if(sh)sh.onclick=async()=>{const url=location.origin+location.pathname;
+  try{if(navigator.share){await navigator.share({title:"Meet & Explore",url});return}}catch(e){return}
+  try{await navigator.clipboard.writeText(url);$("#cp").textContent=t("copied")}catch(e){$("#cp").textContent=url}};
+ const e=$("#email");if(e){e.oninput=()=>A.email=e.value.trim();$("#cons").onchange=ev=>A.consent=ev.target.checked}
+}
+const b64=buf=>btoa(String.fromCharCode(...new Uint8Array(buf)));
+async function encrypt(obj){
+ const der=Uint8Array.from(atob(PUBKEY),c=>c.charCodeAt(0));
+ const pub=await crypto.subtle.importKey("spki",der,{name:"RSA-OAEP",hash:"SHA-256"},false,["encrypt"]);
+ const key=await crypto.subtle.generateKey({name:"AES-GCM",length:256},true,["encrypt"]);
+ const iv=crypto.getRandomValues(new Uint8Array(12));
+ const ct=await crypto.subtle.encrypt({name:"AES-GCM",iv},key,new TextEncoder().encode(JSON.stringify(obj)));
+ const raw=await crypto.subtle.exportKey("raw",key);const ek=await crypto.subtle.encrypt({name:"RSA-OAEP"},pub,raw);
+ return JSON.stringify({v:1,k:b64(ek),iv:b64(iv),c:b64(ct)});
+}
+async function post(body){const r=await fetch("https://ntfy.sh/"+TOPIC,{method:"POST",body});if(!r.ok)throw new Error(r.status);return r}
+async function finish(withEmail){
+ const err=$("#err");err.textContent="";const em=($("#email").value||"").trim();
+ if(withEmail&&em){if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(em)){err.textContent=t("badEmail");return}
+  if(!$("#cons").checked){err.textContent=t("needConsent");return}}
+ const rec={id:(crypto.randomUUID?crypto.randomUUID():String(Date.now())+Math.random()),submitted_at:new Date().toISOString(),lang,
+  source:qs.get("src")||qs.get("utm_source")||"",test:qs.get("test")==="1",
+  city:A.city||"",years_in_city:A.q1||"",age:A.q2||"",lonely:A.q3||"",barriers:A.q4.join("; "),barriers_other:A.q4.includes("Other")?(A.q4_other||""):"",
+  try_first:A.q5||"",grow:A.q6.join("; "),incubator_makes_sense:A.q7||"",incubator_why:A.q7_why||"",group_size:A.q8||"",would_pay:A.q9||"",
+  email:withEmail&&em?em:"",email_consent:!!(withEmail&&em&&$("#cons").checked)};
+ const btns=document.querySelectorAll("#send,#skip");btns.forEach(b=>b.disabled=true);$("#send").textContent=t("sending");
+ try{const body=await encrypt(rec);
+  try{await post(body)}catch(e){await new Promise(r=>setTimeout(r,1500));await post(body)}
+  localStorage.setItem("mx_done",rec.submitted_at);go(N+1);
+ }catch(e){err.textContent=t("failed");btns.forEach(b=>b.disabled=false);$("#send").textContent=t("send")}
+}
+render();
+</script>
+</body>
+</html>
