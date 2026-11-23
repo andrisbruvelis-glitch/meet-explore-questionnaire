@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Meet &amp; Explore – 2-minute questionnaire</title>
-<meta name="description" content="Businesses have incubators to help them grow. What if people had one too? 10 quick questions, under 2 minutes.">
-<meta property="og:title" content="What if people had an incubator too?">
-<meta property="og:description" content="Meet & Explore – 10 quick questions, under 2 minutes. No login.">
+<title>Meet &amp; Explore – quick survey</title>
+<meta name="description" content="Help shape a new app for meeting people where you live. 14 quick taps, about 2½ minutes, anonymous, no login.">
+<meta property="og:title" content="Help shape a new app for meeting people where you live">
+<meta property="og:description" content="Meet &amp; Explore – 14 quick taps, about 2½ minutes. Anonymous, no login.">
 <meta name="theme-color" content="#070707">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1024 1024'%3E%3Ccircle cx='512' cy='512' r='512' fill='%23F5B800'/%3E%3Cpath fill='%23fff' transform='translate(512 512) scale(.8) translate(-512 -485)' d='M79 724 437 140 587 420 687 300 943 724H805L685 531 585 651 435 369 219 724Z'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -114,6 +114,27 @@ label.small{display:block;font-weight:700;font-size:15px;margin:16px 0 8px}
 .foot{color:var(--muted);font-size:12px;text-align:center;margin-top:14px}
 .share{display:flex;gap:10px;margin-top:22px}
 .share .btn{font-size:16px}
+/* v2 additions */
+.opts.compact .opt{min-height:50px;font-size:16px;padding:10px 14px}
+.concept .tag{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0 0 10px;position:relative;z-index:1}
+.concept .big{font-size:30px}
+.concept .benefit{font-size:17px;font-weight:600;color:var(--text);margin:0 0 10px}
+.concept .shared{font-size:15px;color:var(--muted);margin:0}
+.rq{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin:18px 0 8px;font-weight:700;font-size:16px}
+.rq em{font-style:normal;color:var(--gold);font-weight:600;font-size:14px;white-space:nowrap}
+.scale{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+.scale .opt{justify-content:center;text-align:center;min-height:48px;padding:8px 0;font-size:17px}
+.ends{display:flex;justify-content:space-between;color:var(--muted);font-size:12px;margin-top:5px}
+.pills{display:flex;flex-wrap:wrap;gap:8px}
+.pill{border:1.5px solid var(--line);background:var(--surface);color:var(--text);border-radius:99px;padding:9px 14px;font:inherit;font-size:15px;font-weight:600;cursor:pointer}
+.pill.sel{background:var(--gold);border-color:var(--gold);color:var(--ink)}
+.opts.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.opts.grid3 .opt{justify-content:center;text-align:center;min-height:50px;font-size:16px;padding:8px 4px}
+select{width:100%;font:inherit;font-size:18px;padding:15px 16px;border:1.5px solid var(--line);border-radius:var(--r);background:var(--surface);color:var(--text);outline:none;appearance:none;-webkit-appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--gold) 50%),linear-gradient(135deg,var(--gold) 50%,transparent 50%);background-position:calc(100% - 22px) 50%,calc(100% - 16px) 50%;background-size:6px 6px;background-repeat:no-repeat}
+select:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(245,184,0,.22)}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.reveal{margin:20px 0 0;font-family:var(--accent);font-style:italic;font-size:26px;line-height:1.2;color:var(--gold)}
+.opt .q8{font-weight:600}
 </style>
 </head>
 <body>
@@ -128,115 +149,227 @@ label.small{display:block;font-weight:700;font-size:15px;margin:16px 0 8px}
 </div>
 <script>
 const TOPIC="mx-survey-6178f97422e26022e1617f4d", PUBKEY="MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAoOw3YKxEIqbBOQLqSnpJX7lGcPOm7I0wQASs/ef6uK1cI6h5+F9QdQzxnhPVGV4qAJniKEwU8x8vDdCm9I9KdR943V8INmfc06IyAeRxgX+881ih2Xmie9jzl17dQvtQpOjx73WnxLtmBRH9j5YhyKP97ETyiADG8iuRaCZIJmsOr3xRT9XaC08A9qSzrY5FlCp0l3rI8pTI9QeLTZqdMC0nRdhLP3BP/exGKaAoWNlC1CkngL/7pCHokGpIIb8a30WcCghOhvCpR/3U9kieiyDQuCjfuAGSjaVgbl/I3c4QQvyavlB5Hr/D1WTO6yDZ5u9MxjNUalkis5ioGBEmvwIDAQAB";
+const SURVEY_VERSION="v2";
 const T={
-en:{back:"Back",of:"of",next:"Next",start:"Start – 2 min",send:"Send my answers",skip:"Skip & send",
- story1:"Businesses have incubators to help them grow.",story2:"What if people had one too?",
- story3:"Meet & Explore is a place to grow friendships, confidence and new skills – together, in real life. It started in Pau, France, and is going international.",
- meta:"10 quick questions · under 2 minutes · no login · anonymous",
- chips:["☕ Coworking days","🥾 Hikes","🎨 Workshops","🥂 Apéros","🗣️ Language exchange"],
- q1:"Which city do you live in?",q1h:"And how long have you been there?",cityPh:"Your city (e.g. Pau, Lyon, London…)",
- o1:["Less than 1 year","1–3 years","3+ years","I was born here"],
- q2:"Your age range?",
- q3:"In the last year, how often did you feel lonely?",o3:["Never","Rarely","Sometimes","Often","Very often"],
- q4:"What stops you meeting new people?",multi:"Tap all that apply",o4:["Time","Shyness","Safety","I don't know where to go","Other"],otherPh:"Tell us more (optional)",
- q5:"Which would you try first?",o5:["Coworking day","Hike","Language exchange","Workshop","Apéro","Sport"],
- q6:"What do you want to grow?",o6:["Confidence","Career","Health","Creativity","Social skills"],
- q7:"Does “a personal growth incubator” make sense to you?",o7:["Yes","Sort of","No"],whyL:"Why? (optional)",whyPh:"A few words are perfect",
- q8:"Your ideal group size?",o8:["2–5 people","6–12 people","12+ people"],
- q9:"Would you pay for some events?",o9:["No","Up to €5","€5–15","More"],
- q10:"Want early access to Meet & Explore?",q10h:"Optional. Leave your email and we'll tell you when it opens near you.",emailPh:"you@email.com",
- consent:"Yes, Meet & Explore can email me about early access. I can unsubscribe any time, and my email is never shared or sold.",
+en:{back:"Back",of:"of",next:"Next",start:"Start",send:"Send my answers",skip:"Skip & send",multi:"Tap all that apply",otherPh:"Tell us more (optional)",
+ intro1:"Help shape a new app",intro2:"for meeting people where you live.",
+ meta:"14 quick taps · about 2½ minutes · anonymous · no login",
+ foot:"Your answers are anonymous unless you add your email.",
+ q1:"When did you last move to a new city or town?",
+ o1:["In the last 12 months","1–3 years ago","More than 3 years ago","I've never moved city as an adult"],
+ q2:"In the past 4 weeks, how often did you wish you had someone to do things with?",
+ o2:["Never","Rarely","Sometimes","Often","Always"],
+ q3:"The last time you wanted to meet new people, what did you mainly do?",
+ o3:["Used an app or website","Joined a Facebook, WhatsApp or other online group","Joined a club, class, sport or volunteering","Asked friends or colleagues to introduce me","Went out alone to a bar or event","Nothing: I wanted to, but didn't do anything","I haven't wanted to meet new people recently","Other"],
+ q4:"In the last 12 months, which of these have you used to meet new people?",
+ o4:["Meetup","Bumble BFF","Facebook groups","On Va Sortir (OVS)","Entre Potes","Eventbrite","WhatsApp or Telegram communities","Dating apps (also for friends)","Other","None of these"],
+ q5:"What was the biggest problem with the one you used most?",
+ o5:["Groups too big or impersonal","I didn't feel safe or comfortable","Hard to find things that suit me","People didn't show up or it didn't lead to friendships","Felt like dating","Too expensive","No real problem: it worked well","Other"],
+ q6:"In the last 6 months, have you started a new hobby, skill or activity?",
+ o6:["Yes, with other people","Yes, on my own","I wanted to, but didn't","No, it's not a priority right now"],
+ conceptTag:"A new app",
+ shared:"Coworking days, hikes, workshops, apéros and language exchanges near you. Join in a few taps.",
+ rA:"How appealing is this to you?",sA:["Not at all","Slightly","Moderately","Very","Extremely"],
+ rC:"How clear is what this app does?",sC:["Not at all clear","Slightly clear","Moderately clear","Very clear","Extremely clear"],
+ rD:"How likely would you be to download it?",sD:["Very unlikely","Unlikely","Not sure","Likely","Very likely"],
+ q8:"Which line would make you most want to try the app?",none8:"None of these",
+ q9:"If Meet & Explore launched in your city next month, what would you most likely do?",
+ o9:["Download it and join a meetup within the first month","Download it and have a look","Wait until a friend uses it","Probably not use it","Definitely not use it"],
+ q10:"For a small-group meetup you'd enjoy (2–3 hours, 6–10 people), what's the most you'd pay per event for the organising, on top of your own food or drinks?",
+ o10:["Nothing, it should be free","€1–4","€5–9","€10–14","€15 or more"],
+ q11:"Would you be up for hosting or co-hosting a meetup yourself?",
+ o11:["Yes, I'd host one","Maybe, co-hosting with someone","Not now, I'd rather join","No"],
+ q12:"In your own words, how would you describe Meet & Explore to a friend?",q12h:"Optional.",q12ph:"One sentence is perfect",
+ q13:"About you",age:"Age",sit:"Which describe you right now?",sitH:"(optional)",gen:"Gender",genH:"(optional)",where:"Where you live",
+ oAge:["18–24","25–34","35–44","45–54","55+","Prefer not to say"],
+ oSit:["Student","Employed, on-site","Working remotely or freelance","Parent of children under 12","Looking for work","Retired","Other"],
+ oGen:["Woman","Man","Non-binary","I describe myself another way","Prefer not to say"],genSelfPh:"How do you describe yourself? (optional)",
+ cityPh:"City",countryPh:"Country",
+ q14:"Want early access when Meet & Explore opens near you?",q14h:"Optional.",emailPh:"you@email.com",
+ consent:"Yes, Meet & Explore can email me about early access and launch news. I can unsubscribe any time. My email is never sold or shared.",
  needConsent:"Please tick the box to leave your email, or tap “Skip & send”.",badEmail:"That email doesn't look right.",
  sending:"Sending…",failed:"Couldn't send – check your connection and try again.",
- thx:"Thank you! 💛",thx2:"Your answers help us build a place where people grow together. Know someone who just moved to a new city?",
- shareBtn:"Share this questionnaire",copied:"Link copied!",again:"",foot:"Your answers are anonymous unless you add your email."},
-fr:{back:"Retour",of:"sur",next:"Suivant",start:"Commencer – 2 min",send:"Envoyer mes réponses",skip:"Passer et envoyer",
- story1:"Les entreprises ont des incubateurs pour grandir.",story2:"Et si les gens en avaient un, eux aussi ?",
- story3:"Meet & Explore, c'est un lieu pour créer des amitiés, prendre confiance et apprendre – ensemble, en vrai. C'est né à Pau, et ça s'ouvre au monde.",
- meta:"10 questions rapides · moins de 2 minutes · sans compte · anonyme",
- chips:["☕ Journées coworking","🥾 Randos","🎨 Ateliers","🥂 Apéros","🗣️ Échanges de langues"],
- q1:"Dans quelle ville vis-tu ?",q1h:"Et depuis combien de temps ?",cityPh:"Ta ville (ex. Pau, Lyon, Bordeaux…)",
- o1:["Moins d'un an","1 à 3 ans","Plus de 3 ans","J'y suis né·e"],
- q2:"Ta tranche d'âge ?",
- q3:"Cette année, tu t'es senti·e seul·e… ?",o3:["Jamais","Rarement","Parfois","Souvent","Très souvent"],
- q4:"Qu'est-ce qui t'empêche de rencontrer du monde ?",multi:"Coche tout ce qui s'applique",o4:["Le temps","La timidité","La sécurité","Je ne sais pas où aller","Autre"],otherPh:"Dis-nous en plus (facultatif)",
- q5:"Tu essaierais quoi en premier ?",o5:["Journée coworking","Randonnée","Échange de langues","Atelier","Apéro","Sport"],
- q6:"Qu'est-ce que tu veux faire grandir ?",o6:["Confiance en soi","Carrière","Santé","Créativité","Aisance sociale"],
- q7:"« Un incubateur de développement personnel », ça te parle ?",o7:["Oui","Un peu","Non"],whyL:"Pourquoi ? (facultatif)",whyPh:"Quelques mots suffisent",
- q8:"La taille de groupe idéale ?",o8:["2 à 5 personnes","6 à 12 personnes","Plus de 12"],
- q9:"Tu paierais pour certains événements ?",o9:["Non","Jusqu'à 5 €","5 à 15 €","Plus"],
- q10:"Tu veux un accès en avant-première ?",q10h:"Facultatif. Laisse ton e-mail et on te prévient quand ça ouvre près de chez toi.",emailPh:"toi@email.com",
- consent:"Oui, Meet & Explore peut m'écrire au sujet de l'avant-première. Je peux me désinscrire à tout moment ; mon e-mail n'est jamais partagé ni vendu.",
+ thx:"Thank you! 💛",thx2:"Know someone who just moved to a new city? Send them this survey.",
+ reveal:"Businesses have incubators. People deserve one too.",
+ shareBtn:"Share this survey",copied:"Link copied!"},
+fr:{back:"Retour",of:"sur",next:"Suivant",start:"Commencer",send:"Envoyer mes réponses",skip:"Passer et envoyer",multi:"Plusieurs choix possibles",otherPh:"Dis-nous en plus (facultatif)",
+ intro1:"Aide-nous à imaginer une nouvelle appli",intro2:"pour rencontrer du monde près de chez toi.",
+ meta:"14 questions rapides · environ 2 min 30 · anonyme · sans compte",
+ foot:"Tes réponses sont anonymes, sauf si tu ajoutes ton e-mail.",
+ q1:"Quand as-tu emménagé dans une nouvelle ville pour la dernière fois ?",
+ o1:["Au cours des 12 derniers mois","Il y a 1 à 3 ans","Il y a plus de 3 ans","Je n'ai jamais changé de ville à l'âge adulte"],
+ q2:"Ces 4 dernières semaines, combien de fois as-tu eu envie d'avoir quelqu'un avec qui faire des choses ?",
+ o2:["Jamais","Rarement","Parfois","Souvent","Tout le temps"],
+ q3:"La dernière fois que tu as voulu rencontrer de nouvelles personnes, qu'as-tu fait principalement ?",
+ o3:["Utilisé une appli ou un site","Rejoint un groupe Facebook, WhatsApp ou autre","Rejoint un club, un cours, un sport ou du bénévolat","Demandé à des amis ou collègues de me présenter du monde","Suis sorti·e seul·e dans un bar ou à un événement","Rien : j'en avais envie, mais je n'ai rien fait","Je n'ai pas cherché à rencontrer du monde récemment","Autre"],
+ q4:"Ces 12 derniers mois, lesquels as-tu utilisés pour rencontrer du monde ?",
+ o4:["Meetup","Bumble BFF","Groupes Facebook","On Va Sortir (OVS)","Entre Potes","Eventbrite","Communautés WhatsApp ou Telegram","Applis de rencontre (aussi pour des amis)","Autre","Aucun"],
+ q5:"Quel a été le plus gros problème avec celui que tu as le plus utilisé ?",
+ o5:["Groupes trop grands ou impersonnels","Je ne me sentais pas en sécurité ou à l'aise","Difficile de trouver des choses qui me correspondent","Les gens ne venaient pas, ou ça ne créait pas d'amitiés","Ça ressemblait trop à des rencontres amoureuses","Trop cher","Pas vraiment de problème : ça marchait bien","Autre"],
+ q6:"Ces 6 derniers mois, as-tu commencé un nouveau loisir, une nouvelle compétence ou activité ?",
+ o6:["Oui, avec d'autres personnes","Oui, seul·e","J'en avais envie, mais je ne l'ai pas fait","Non, ce n'est pas une priorité en ce moment"],
+ conceptTag:"Une nouvelle appli",
+ shared:"Coworking, randos, ateliers, apéros et échanges de langues près de chez toi. On rejoint en quelques clics.",
+ rA:"À quel point ça te plaît ?",sA:["Pas du tout","Un peu","Moyennement","Beaucoup","Énormément"],
+ rC:"Est-ce clair, ce que fait cette appli ?",sC:["Pas du tout clair","Un peu clair","Moyennement clair","Très clair","Parfaitement clair"],
+ rD:"Quelle est la probabilité que tu la télécharges ?",sD:["Très peu probable","Peu probable","Je ne sais pas","Probable","Très probable"],
+ q8:"Quelle phrase te donnerait le plus envie d'essayer l'appli ?",none8:"Aucune",
+ q9:"Si Meet & Explore arrivait dans ta ville le mois prochain, que ferais-tu le plus probablement ?",
+ o9:["La télécharger et participer à une sortie dès le premier mois","La télécharger pour jeter un œil","Attendre qu'un·e ami·e l'utilise","Probablement ne pas l'utiliser","Certainement pas l'utiliser"],
+ q10:"Pour une sortie en petit groupe qui te plaît (2–3 h, 6 à 10 personnes), combien serais-tu prêt·e à payer au maximum par événement pour l'organisation, en plus de tes consommations ?",
+ o10:["Rien, ça doit être gratuit","1–4 €","5–9 €","10–14 €","15 € ou plus"],
+ q11:"Serais-tu partant·e pour organiser ou co-organiser une sortie ?",
+ o11:["Oui, j'en organiserais une","Peut-être, en duo avec quelqu'un","Pas pour l'instant, je préfère participer","Non"],
+ q12:"Avec tes mots, comment décrirais-tu Meet & Explore à un·e ami·e ?",q12h:"Facultatif.",q12ph:"Une phrase suffit",
+ q13:"À propos de toi",age:"Âge",sit:"Qu'est-ce qui te décrit en ce moment ?",sitH:"(facultatif)",gen:"Genre",genH:"(facultatif)",where:"Où tu vis",
+ oAge:["18–24","25–34","35–44","45–54","55+","Je préfère ne pas répondre"],
+ oSit:["Étudiant·e","Salarié·e sur site","En télétravail ou freelance","Parent d'enfants de moins de 12 ans","En recherche d'emploi","Retraité·e","Autre"],
+ oGen:["Femme","Homme","Non-binaire","Je me décris autrement","Je préfère ne pas répondre"],genSelfPh:"Comment te décris-tu ? (facultatif)",
+ cityPh:"Ville",countryPh:"Pays",
+ q14:"Tu veux un accès en avant-première quand Meet & Explore ouvre près de chez toi ?",q14h:"Facultatif.",emailPh:"toi@email.com",
+ consent:"Oui, Meet & Explore peut m'écrire au sujet de l'avant-première et du lancement. Je peux me désinscrire à tout moment. Mon e-mail n'est jamais vendu ni partagé.",
  needConsent:"Coche la case pour laisser ton e-mail, ou touche « Passer et envoyer ».",badEmail:"Cet e-mail ne semble pas valide.",
  sending:"Envoi…",failed:"Échec de l'envoi – vérifie ta connexion et réessaie.",
- thx:"Merci ! 💛",thx2:"Tes réponses nous aident à construire un lieu où l'on grandit ensemble. Tu connais quelqu'un qui vient d'arriver dans une nouvelle ville ?",
- shareBtn:"Partager le questionnaire",copied:"Lien copié !",foot:"Tes réponses sont anonymes, sauf si tu ajoutes ton e-mail."}};
-// value keys stay in English so the results table is the same whatever the language
-const V={q1:["<1 yr","1-3 yrs","3+ yrs","Born here"],q2:["18–24","25–34","35–44","45–55","55+"],q3:["Never","Rarely","Sometimes","Often","Very often"],
- q4:["Time","Shyness","Safety","Don't know where","Other"],q5:["Coworking day","Hike","Language exchange","Workshop","Apéro","Sport"],
- q6:["Confidence","Career","Health","Creativity","Social skills"],q7:["Yes","Sort of","No"],q8:["2-5","6-12","12+"],q9:["No","Up to €5","€5-15","More"]};
-const IC={q5:["💻","🥾","🗣️","🎨","🥂","🏃‍♀️"],q6:["✨","💼","🌿","🎨","🤝"]};
+ thx:"Merci ! 💛",thx2:"Tu connais quelqu'un qui vient d'arriver dans une nouvelle ville ? Envoie-lui ce questionnaire.",
+ reveal:"Les entreprises ont leurs incubateurs. Les gens méritent le leur.",
+ shareBtn:"Partager le questionnaire",copied:"Lien copié !"}};
+// Concept cards (Q7) and headlines (Q8). Only the positioning changes; the shared line is the same on every card.
+const CARDS={
+ A:{en:["Businesses have incubators. People deserve one too.","Grow friendships, confidence and new skills, together."],
+    fr:["Les entreprises ont leurs incubateurs. Les gens méritent le leur.","Crée des amitiés, prends confiance et apprends, ensemble."]},
+ B:{en:["Meet new people near you, safely.","Small groups, clear plans, public places."],
+    fr:["Rencontre du monde près de chez toi, en confiance.","Petits groupes, programme clair, lieux publics."]},
+ C:{en:["Your city, your people.","Small-group meetups that turn strangers into friends."],
+    fr:["Ta ville, tes gens.","Des sorties en petit groupe où des inconnus deviennent des amis."]},
+ D:{en:["Grow yourself by trying new things with others.","Learn, move and explore, never alone."],
+    fr:["Grandis en essayant de nouvelles choses avec d'autres.","Apprends, bouge, explore, jamais seul·e."]}};
+// Stored values: English keys / numbers, so FR and EN answers combine cleanly.
+const V={
+ moved_when:["moved_12m","moved_1_3y","moved_3y_plus","never_moved"],
+ lack_people_freq:[1,2,3,4,5],
+ last_time_action:["app_or_website","online_group","club_class_sport","friends_intro","went_out_alone","did_nothing","no_need","other"],
+ tools_used:["meetup","bumble_bff","facebook_groups","ovs","entre_potes","eventbrite","whatsapp_telegram","dating_apps","other","none"],
+ tools_problem:["too_big","not_safe","hard_to_find","no_friendships","felt_like_dating","too_expensive","no_problem","other"],
+ new_skill:["yes_with_others","yes_alone","wanted_didnt","not_priority"],
+ appeal:[1,2,3,4,5],clarity:[1,2,3,4,5],download:[1,2,3,4,5],
+ intent:["join_first_month","download_look","wait_friend","probably_not","definitely_not"],
+ wtp:["free","eur_1_4","eur_5_9","eur_10_14","eur_15_plus"],
+ host:["yes_host","maybe_cohost","rather_join","no"],
+ age:["18-24","25-34","35-44","45-54","55+","prefer_not"],
+ situation:["student","employed_onsite","remote_freelance","parent_u12","looking_for_work","retired","other"],
+ gender:["woman","man","non_binary","self_describe","prefer_not"]};
+const LABEL={moved_when:"o1",lack_people_freq:"o2",last_time_action:"o3",tools_used:"o4",tools_problem:"o5",new_skill:"o6",
+ intent:"o9",wtp:"o10",host:"o11",age:"oAge",situation:"oSit",gender:"oGen",appeal:"sA",clarity:"sC",download:"sD"};
+const TOP_COUNTRIES=["FR","GB","ES","LV"];
+const COUNTRIES="AF AL DZ AD AO AG AR AM AU AT AZ BS BH BD BB BY BE BZ BJ BT BO BA BW BR BN BG BF BI CV KH CM CA CF TD CL CN CO KM CG CD CR CI HR CU CY CZ DK DJ DM DO EC EG SV GQ ER EE SZ ET FJ FI FR GA GM GE DE GH GR GD GT GN GW GY HT HN HK HU IS IN ID IR IQ IE IL IT JM JP JO KZ KE KI XK KW KG LA LV LB LS LR LY LI LT LU MO MG MW MY MV ML MT MH MR MU MX FM MD MC MN ME MA MZ MM NA NR NP NL NZ NI NE NG KP MK NO OM PK PW PS PA PG PY PE PH PL PT PR QA RO RU RW KN LC VC WS SM ST SA SN RS SC SL SG SK SI SB SO ZA KR SS ES LK SD SR SE CH SY TW TJ TZ TH TL TG TO TT TN TR TM TV UG UA AE GB US UY UZ VU VA VE VN YE ZM ZW".split(" ");
 const qs=new URLSearchParams(location.search);
-let lang=localStorage.getItem("mx_lang")||((navigator.language||"").toLowerCase().startsWith("fr")?"fr":"en");
+const IS_TEST=qs.get("test")==="1";
+const SOURCE=(qs.get("src")||qs.get("utm_source")||"").slice(0,40);
+// --- variant (set on page load, before the intro) ---
+const VARIANTS=["A","B","C","D"];
+function rnd(n){return crypto.getRandomValues(new Uint32Array(1))[0]%n}
+function store(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+function load(k){try{return localStorage.getItem(k)}catch(e){return null}}
+let variant=(qs.get("v")||"").toUpperCase(),variantForced=VARIANTS.includes(variant);
+if(!variantForced){variant=load("mx_v2_variant");if(!VARIANTS.includes(variant)){variant=VARIANTS[rnd(4)];store("mx_v2_variant",variant)}}
+let pickOrder=load("mx_v2_pick_order");
+if(!pickOrder||pickOrder.length!==4||[...pickOrder].sort().join("")!=="ABCD"){
+ const a=VARIANTS.slice();for(let i=a.length-1;i>0;i--){const j=rnd(i+1);[a[i],a[j]]=[a[j],a[i]]}
+ pickOrder=a.join("");store("mx_v2_pick_order",pickOrder)}
+const SID=crypto.randomUUID?crypto.randomUUID():String(Date.now())+"-"+rnd(1e9);
+let lang=load("mx_lang")||((navigator.language||"").toLowerCase().startsWith("fr")?"fr":"en");
 if(qs.get("lang")==="fr"||qs.get("lang")==="en")lang=qs.get("lang");
-const A={q4:[],q6:[]};const N=10;let step=0;
+const A={tools_used:[],situation:[]};
+let step=0,startedAt=0,conceptMs=0,conceptEnter=0,startedSent=false;
 const $=s=>document.querySelector(s);const t=k=>T[lang][k];
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-function setLang(l){lang=l;localStorage.setItem("mx_lang",l);document.documentElement.lang=l;
- document.querySelectorAll(".lang button").forEach(b=>b.classList.toggle("on",b.dataset.l===l));render(false)}
+function screens(){const s=["q1","q2","q3","q4","q5","q6","q7","q8","q9","q10","q11","q12","q13","q14"];
+ return A.tools_used.includes("none")?s.filter(x=>x!=="q5"):s}  // Q5 only if they used a tool
+function cur(){const s=screens();return step===0?"intro":step>s.length?"thanks":s[step-1]}
+function setLang(l){lang=l;store("mx_lang",l);render(false)}
 document.querySelectorAll(".lang button").forEach(b=>b.onclick=()=>setLang(b.dataset.l));
-$("#back").onclick=()=>{if(step>0){step--;render()}};
-function go(n){step=n;render();window.scrollTo(0,0)}
-function single(key,opts,extra=""){const ic=IC[key]||[];return `<div class="opts ${extra}">`+opts.map((o,i)=>
- `<button class="opt ${A[key]===V[key][i]?"sel":""}" data-k="${key}" data-i="${i}">${ic[i]?`<span class="ic">${ic[i]}</span>`:""}<span>${esc(o)}</span></button>`).join("")+"</div>"}
-function multi(key,opts){const ic=IC[key]||[];return `<div class="opts">`+opts.map((o,i)=>
- `<button class="opt ${A[key].includes(V[key][i])?"sel":""}" data-m="${key}" data-i="${i}">${ic[i]?`<span class="ic">${ic[i]}</span>`:""}<span>${esc(o)}</span><span class="ck">✓</span></button>`).join("")+"</div>"}
+$("#back").onclick=()=>{if(step>1)go(step-1)};
+function go(n){const was=cur();if(was==="q7"&&conceptEnter){conceptMs+=Date.now()-conceptEnter;conceptEnter=0}
+ step=n;if(cur()==="q7")conceptEnter=Date.now();render();window.scrollTo(0,0)}
+function labels(key){return t(LABEL[key])}
+function single(key,extra=""){const L=labels(key);return `<div class="opts ${extra}">`+V[key].map((v,i)=>
+ `<button class="opt ${A[key]===v?"sel":""}" data-k="${key}" data-i="${i}"><span>${esc(L[i])}</span></button>`).join("")+"</div>"}
+function multi(key){const L=labels(key);return `<div class="opts compact">`+V[key].map((v,i)=>
+ `<button class="opt ${A[key].includes(v)?"sel":""}" data-m="${key}" data-i="${i}"><span>${esc(L[i])}</span><span class="ck">✓</span></button>`).join("")+"</div>"}
+function pills(key,isMulti){const L=labels(key);return `<div class="pills">`+V[key].map((v,i)=>{const on=isMulti?A[key].includes(v):A[key]===v;
+ return `<button class="pill ${on?"sel":""}" ${isMulti?"data-m":"data-p"}="${key}" data-i="${i}">${esc(L[i])}</button>`}).join("")+"</div>"}
+function scale(key,qk){const L=labels(key);const sel=A[key];return `<div class="rq"><span>${esc(t(qk))}</span><em>${sel?esc(L[sel-1]):""}</em></div>
+ <div class="scale" role="group" aria-label="${esc(t(qk))}">`+V[key].map((v,i)=>`<button class="opt ${sel===v?"sel":""}" data-s="${key}" data-i="${i}" aria-label="${esc(L[i])}">${v}</button>`).join("")+
+ `</div><div class="ends"><span>${esc(L[0])}</span><span>${esc(L[4])}</span></div>`}
+function otherBox(id,show,val){return `<div id="${id}Box" ${show?"":"hidden"}><input type="text" id="${id}" maxlength="200" style="margin-top:10px" placeholder="${esc(t("otherPh"))}" value="${esc(val||"")}"></div>`}
+function nextBtn(enabled){return `<div class="cta"><button class="btn" id="nx" ${enabled?"":"disabled"}>${esc(t("next"))}</button></div>`}
+function countryOptions(){let dn=null;try{dn=new Intl.DisplayNames([lang],{type:"region"})}catch(e){}
+ const nm=c=>dn?dn.of(c):c;const rest=COUNTRIES.filter(c=>!TOP_COUNTRIES.includes(c)).map(c=>[c,nm(c)]).sort((a,b)=>a[1].localeCompare(b[1],lang));
+ const o=(c,n)=>`<option value="${c}" ${A.country===c?"selected":""}>${esc(n)}</option>`;
+ return `<option value="" ${A.country?"":"selected"} disabled>${esc(t("countryPh"))}</option>`+TOP_COUNTRIES.map(c=>o(c,nm(c))).join("")+`<option disabled>──────────</option>`+rest.map(([c,n])=>o(c,n)).join("")}
 function render(anim=true){
  document.documentElement.lang=lang;document.querySelectorAll(".lang button").forEach(b=>b.classList.toggle("on",b.dataset.l===lang));
  document.querySelectorAll("[data-t]").forEach(e=>e.textContent=t(e.dataset.t));
- const m=$("#main");const inQ=step>=1&&step<=N;$("#prog").hidden=!inQ;
- if(inQ){$("#barI").style.width=((step-1)/N*100+4)+"%";$("#count").textContent=`${step} ${t("of")} ${N}`;}
+ const S=screens(),N=S.length,id=cur(),inQ=step>=1&&step<=N;$("#prog").hidden=!inQ;
+ if(inQ){$("#barI").style.width=((step-1)/N*100+4)+"%";$("#count").textContent=`${step} ${t("of")} ${N}`;$("#back").style.visibility=step>1?"visible":"hidden"}
  let h="";
- if(step===0){h=`<div class="hero"><p>${esc(t("story1"))}</p><div class="big">${esc(t("story2"))}</div><p style="font-size:16px;margin:0">${esc(t("story3"))}</p></div>
-  <div class="chips">${t("chips").map(c=>`<span class="chip">${esc(c)}</span>`).join("")}</div>
-  <div class="meta">${esc(t("meta"))}</div><div class="cta"><button class="btn" id="go">${esc(t("start"))}</button><div class="foot">${esc(t("foot"))}</div></div>`}
- else if(step===1){h=`<h2>${esc(t("q1"))}</h2><input type="text" id="city" autocomplete="address-level2" placeholder="${esc(t("cityPh"))}" value="${esc(A.city||"")}">
-  <label class="small">${esc(t("q1h"))}</label>${single("q1",t("o1"),"grid2")}`}
- else if(step===2)h=`<h2>${esc(t("q2"))}</h2><div class="hint">&nbsp;</div>${single("q2",V.q2)}`;
- else if(step===3)h=`<h2>${esc(t("q3"))}</h2><div class="hint">&nbsp;</div>${single("q3",t("o3"))}`;
- else if(step===4)h=`<h2>${esc(t("q4"))}</h2><p class="hint">${esc(t("multi"))}</p>${multi("q4",t("o4"))}
-  <div id="otherBox" ${A.q4.includes("Other")?"":"hidden"}><input type="text" id="other" style="margin-top:10px" placeholder="${esc(t("otherPh"))}" value="${esc(A.q4_other||"")}"></div>
-  <div class="cta"><button class="btn" id="nx" ${A.q4.length?"":"disabled"}>${esc(t("next"))}</button></div>`;
- else if(step===5)h=`<h2>${esc(t("q5"))}</h2><div class="hint">&nbsp;</div>${single("q5",t("o5"))}`;
- else if(step===6)h=`<h2>${esc(t("q6"))}</h2><p class="hint">${esc(t("multi"))}</p>${multi("q6",t("o6"))}
-  <div class="cta"><button class="btn" id="nx" ${A.q6.length?"":"disabled"}>${esc(t("next"))}</button></div>`;
- else if(step===7)h=`<h2>${esc(t("q7"))}</h2><div class="hint">&nbsp;</div>${single("q7",t("o7"),"grid3")}
-  <div id="whyBox" ${A.q7?"":"hidden"}><label class="small">${esc(t("whyL"))}</label><textarea id="why" maxlength="500" placeholder="${esc(t("whyPh"))}">${esc(A.q7_why||"")}</textarea>
-  <div class="cta"><button class="btn" id="nx">${esc(t("next"))}</button></div></div>`;
- else if(step===8)h=`<h2>${esc(t("q8"))}</h2><div class="hint">&nbsp;</div>${single("q8",t("o8"))}`;
- else if(step===9)h=`<h2>${esc(t("q9"))}</h2><div class="hint">&nbsp;</div>${single("q9",t("o9"),"grid2")}`;
- else if(step===10)h=`<h2>${esc(t("q10"))}</h2><p class="hint">${esc(t("q10h"))}</p>
+ if(id==="intro")h=`<div class="hero"><p>${esc(t("intro1"))}</p><div class="big">${esc(t("intro2"))}</div><p style="font-size:16px;margin:0">${esc(t("meta"))}</p></div>
+  <div class="cta"><button class="btn" id="go">${esc(t("start"))}</button><div class="foot">${esc(t("foot"))}</div></div>`;
+ else if(id==="q1")h=`<h2>${esc(t("q1"))}</h2><div class="hint">&nbsp;</div>${single("moved_when")}`;
+ else if(id==="q2")h=`<h2>${esc(t("q2"))}</h2><div class="hint">&nbsp;</div>${single("lack_people_freq")}`;
+ else if(id==="q3")h=`<h2>${esc(t("q3"))}</h2><div class="hint">&nbsp;</div>${single("last_time_action","compact")}
+  ${otherBox("lastOther",A.last_time_action==="other",A.last_time_other)}${A.last_time_action==="other"?nextBtn(true):""}`;
+ else if(id==="q4")h=`<h2>${esc(t("q4"))}</h2><p class="hint">${esc(t("multi"))}</p>${multi("tools_used")}
+  ${otherBox("toolsOther",A.tools_used.includes("other"),A.tools_other)}${nextBtn(A.tools_used.length)}`;
+ else if(id==="q5")h=`<h2>${esc(t("q5"))}</h2><div class="hint">&nbsp;</div>${single("tools_problem","compact")}
+  ${otherBox("probOther",A.tools_problem==="other",A.tools_problem_other)}${A.tools_problem==="other"?nextBtn(true):""}`;
+ else if(id==="q6")h=`<h2>${esc(t("q6"))}</h2><div class="hint">&nbsp;</div>${single("new_skill")}`;
+ else if(id==="q7"){const c=CARDS[variant][lang];
+  h=`<div class="hero concept" data-variant="${variant}"><div class="tag">${esc(t("conceptTag"))}</div><div class="big">${esc(c[0])}</div><p class="benefit">${esc(c[1])}</p><p class="shared">${esc(t("shared"))}</p></div>
+  ${scale("appeal","rA")}${scale("clarity","rC")}${scale("download","rD")}${nextBtn(A.appeal&&A.clarity&&A.download)}`}
+ else if(id==="q8"){const o=[...pickOrder].map(k=>`<button class="opt ${A.pick_best===k?"sel":""}" data-pick="${k}"><span class="q8">${esc(CARDS[k][lang][0])}</span></button>`).join("");
+  h=`<h2>${esc(t("q8"))}</h2><div class="hint">&nbsp;</div><div class="opts">${o}<button class="opt ${A.pick_best==="none"?"sel":""}" data-pick="none"><span>${esc(t("none8"))}</span></button></div>`}
+ else if(id==="q9")h=`<h2>${esc(t("q9"))}</h2><div class="hint">&nbsp;</div>${single("intent","compact")}`;
+ else if(id==="q10")h=`<h2 style="font-size:21px">${esc(t("q10"))}</h2><div class="hint">&nbsp;</div>${single("wtp")}`;
+ else if(id==="q11")h=`<h2>${esc(t("q11"))}</h2><div class="hint">&nbsp;</div>${single("host")}`;
+ else if(id==="q12")h=`<h2>${esc(t("q12"))}</h2><p class="hint">${esc(t("q12h"))}</p><textarea id="describe" maxlength="500" placeholder="${esc(t("q12ph"))}">${esc(A.describe||"")}</textarea>${nextBtn(true)}`;
+ else if(id==="q13")h=`<h2>${esc(t("q13"))}</h2>
+  <label class="small">${esc(t("age"))}</label>${pills("age",false)}
+  <label class="small">${esc(t("sit"))} <span style="color:var(--muted);font-weight:400">${esc(t("sitH"))}</span></label>${pills("situation",true)}
+  <label class="small">${esc(t("gen"))} <span style="color:var(--muted);font-weight:400">${esc(t("genH"))}</span></label>${pills("gender",false)}
+  <div id="genSelfBox" ${A.gender==="self_describe"?"":"hidden"}><input type="text" id="genSelf" maxlength="80" style="margin-top:10px" placeholder="${esc(t("genSelfPh"))}" value="${esc(A.gender_self||"")}"></div>
+  <label class="small">${esc(t("where"))}</label><div class="row2"><input type="text" id="city" maxlength="80" autocomplete="address-level2" placeholder="${esc(t("cityPh"))}" value="${esc(A.city||"")}"><select id="country" autocomplete="country">${countryOptions()}</select></div>
+  ${nextBtn(!!A.age)}`;
+ else if(id==="q14")h=`<h2>${esc(t("q14"))}</h2><p class="hint">${esc(t("q14h"))}</p>
   <input type="email" id="email" inputmode="email" autocomplete="email" placeholder="${esc(t("emailPh"))}" value="${esc(A.email||"")}">
   <label class="consent"><input type="checkbox" id="cons" ${A.consent?"checked":""}><span>${esc(t("consent"))}</span></label>
   <div class="err" id="err"></div>
   <div class="cta"><button class="btn y" id="send">${esc(t("send"))}</button><button class="link" id="skip">${esc(t("skip"))}</button></div>`;
  else h=`<div class="thanks screen"><div class="big">🌼</div><h1>${esc(t("thx"))}</h1><p class="hint" style="font-size:17px">${esc(t("thx2"))}</p>
+  <div class="reveal">${esc(t("reveal"))}</div>
   <div class="share"><button class="btn y" id="share">${esc(t("shareBtn"))}</button></div><div class="foot" id="cp"></div></div>`;
- m.innerHTML=`<div class="screen" style="${anim?"":"animation:none"}">${h}</div>`;
+ $("#main").innerHTML=`<div class="screen" data-screen="${id}" style="${anim?"":"animation:none"}">${h}</div>`;
  bind();
 }
+const AUTO_HOLD={last_time_action:"other",tools_problem:"other"};
 function bind(){
- const g=$("#go");if(g)g.onclick=()=>go(1);
- const city=$("#city");if(city)city.oninput=()=>A.city=city.value.trim();
- document.querySelectorAll("[data-k]").forEach(b=>b.onclick=()=>{const k=b.dataset.k;A[k]=V[k][+b.dataset.i];
+ const g=$("#go");if(g)g.onclick=()=>{if(!startedAt)startedAt=Date.now();sendStarted();go(1)};
+ document.querySelectorAll("[data-k]").forEach(b=>b.onclick=()=>{const k=b.dataset.k,v=V[k][+b.dataset.i];A[k]=v;
   document.querySelectorAll(`[data-k="${k}"]`).forEach(x=>x.classList.toggle("sel",x===b));
-  if(k==="q7"){$("#whyBox").hidden=false;return}
+  if(AUTO_HOLD[k]===v){render(false);const o=document.querySelector("#main input[type=text]");if(o)o.focus();return}
   setTimeout(()=>go(step+1),220)});
- document.querySelectorAll("[data-m]").forEach(b=>b.onclick=()=>{const k=b.dataset.m,v=V[k][+b.dataset.i];const a=A[k];
-  const j=a.indexOf(v);j<0?a.push(v):a.splice(j,1);b.classList.toggle("sel",j<0);$("#nx").disabled=!a.length;
-  if(k==="q4"){$("#otherBox").hidden=!a.includes("Other")}});
- const o=$("#other");if(o)o.oninput=()=>A.q4_other=o.value.trim();
- const w=$("#why");if(w)w.oninput=()=>A.q7_why=w.value.trim();
+ document.querySelectorAll("[data-pick]").forEach(b=>b.onclick=()=>{A.pick_best=b.dataset.pick;
+  document.querySelectorAll("[data-pick]").forEach(x=>x.classList.toggle("sel",x===b));setTimeout(()=>go(step+1),220)});
+ document.querySelectorAll("[data-s]").forEach(b=>b.onclick=()=>{const k=b.dataset.s;A[k]=V[k][+b.dataset.i];const y=window.scrollY;render(false);window.scrollTo(0,y)});
+ document.querySelectorAll("[data-p]").forEach(b=>b.onclick=()=>{const k=b.dataset.p;A[k]=V[k][+b.dataset.i];const y=window.scrollY;render(false);window.scrollTo(0,y)});
+ document.querySelectorAll("[data-m]").forEach(b=>b.onclick=()=>{const k=b.dataset.m,v=V[k][+b.dataset.i];let a=A[k];
+  if(k==="tools_used"&&v==="none"){A[k]=a.includes("none")?[]:["none"]}
+  else{if(k==="tools_used")a=a.filter(x=>x!=="none");const j=a.indexOf(v);j<0?a.push(v):a.splice(j,1);A[k]=a}
+  const y=window.scrollY;render(false);window.scrollTo(0,y)});
+ const inp=(sel,key)=>{const e=$(sel);if(e)e.oninput=()=>A[key]=e.value.trim()};
+ inp("#lastOther","last_time_other");inp("#toolsOther","tools_other");inp("#probOther","tools_problem_other");
+ inp("#describe","describe");inp("#genSelf","gender_self");inp("#city","city");
+ const c=$("#country");if(c)c.onchange=()=>A.country=c.value;
  const nx=$("#nx");if(nx)nx.onclick=()=>go(step+1);
  const s=$("#send");if(s)s.onclick=()=>finish(true);
  const sk=$("#skip");if(sk)sk.onclick=()=>finish(false);
@@ -256,19 +389,33 @@ async function encrypt(obj){
  return JSON.stringify({v:1,k:b64(ek),iv:b64(iv),c:b64(ct)});
 }
 async function post(body){const r=await fetch("https://ntfy.sh/"+TOPIC,{method:"POST",body});if(!r.ok)throw new Error(r.status);return r}
+// Small "started" event so drop-off per variant can be measured. Fire-and-forget, once per page load; never blocks the survey.
+function sendStarted(){if(startedSent)return;startedSent=true;
+ encrypt({event:"started",survey_version:SURVEY_VERSION,id:SID,started_at:new Date().toISOString(),lang,source:SOURCE,test:IS_TEST,
+  variant,variant_forced:variantForced,pick_order:pickOrder}).then(post).catch(()=>{})}
 async function finish(withEmail){
  const err=$("#err");err.textContent="";const em=($("#email").value||"").trim();
  if(withEmail&&em){if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(em)){err.textContent=t("badEmail");return}
   if(!$("#cons").checked){err.textContent=t("needConsent");return}}
- const rec={id:(crypto.randomUUID?crypto.randomUUID():String(Date.now())+Math.random()),submitted_at:new Date().toISOString(),lang,
-  source:qs.get("src")||qs.get("utm_source")||"",test:qs.get("test")==="1",
-  city:A.city||"",years_in_city:A.q1||"",age:A.q2||"",lonely:A.q3||"",barriers:A.q4.join("; "),barriers_other:A.q4.includes("Other")?(A.q4_other||""):"",
-  try_first:A.q5||"",grow:A.q6.join("; "),incubator_makes_sense:A.q7||"",incubator_why:A.q7_why||"",group_size:A.q8||"",would_pay:A.q9||"",
-  email:withEmail&&em?em:"",email_consent:!!(withEmail&&em&&$("#cons").checked)};
+ if(conceptEnter){conceptMs+=Date.now()-conceptEnter;conceptEnter=0}
+ let countryName=A.country||"";try{if(A.country)countryName=new Intl.DisplayNames(["en"],{type:"region"}).of(A.country)}catch(e){}
+ const used=A.tools_used.length&&!A.tools_used.includes("none");
+ const rec={event:"answer",survey_version:SURVEY_VERSION,id:SID,submitted_at:new Date().toISOString(),lang,source:SOURCE,test:IS_TEST,
+  variant,variant_forced:variantForced,pick_order:pickOrder,
+  moved_when:A.moved_when||"",lack_people_freq:A.lack_people_freq||"",
+  last_time_action:A.last_time_action||"",last_time_other:A.last_time_action==="other"?(A.last_time_other||""):"",
+  tools_used:A.tools_used.join("; "),tools_other:A.tools_used.includes("other")?(A.tools_other||""):"",
+  tools_problem:used?(A.tools_problem||""):"",tools_problem_other:used&&A.tools_problem==="other"?(A.tools_problem_other||""):"",
+  new_skill:A.new_skill||"",appeal:A.appeal||"",clarity:A.clarity||"",download:A.download||"",pick_best:A.pick_best||"",
+  intent:A.intent||"",wtp:A.wtp||"",host:A.host||"",describe:A.describe||"",
+  age:A.age||"",situation:A.situation.join("; "),gender:A.gender||"",gender_self:A.gender==="self_describe"?(A.gender_self||""):"",
+  city:A.city||"",country:countryName,
+  email:withEmail&&em?em:"",email_consent:!!(withEmail&&em&&$("#cons").checked),
+  seconds_total:startedAt?Math.round((Date.now()-startedAt)/1000):"",seconds_on_concept:Math.round(conceptMs/100)/10};
  const btns=document.querySelectorAll("#send,#skip");btns.forEach(b=>b.disabled=true);$("#send").textContent=t("sending");
  try{const body=await encrypt(rec);
   try{await post(body)}catch(e){await new Promise(r=>setTimeout(r,1500));await post(body)}
-  localStorage.setItem("mx_done",rec.submitted_at);go(N+1);
+  store("mx_done",rec.submitted_at);go(screens().length+1);
  }catch(e){err.textContent=t("failed");btns.forEach(b=>b.disabled=false);$("#send").textContent=t("send")}
 }
 render();
